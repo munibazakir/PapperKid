@@ -1,16 +1,40 @@
-# alphabetsandcounting
+# Paper Kids
 
-A new Flutter project.
+This is a Flutter-based educational app designed for children to learn alphabets and numbers. The app includes multiple levels for each module:
 
-## Getting Started
+## Features
 
-This project is a starting point for a Flutter application.
+- **Alphabet Module**
+  - Level 1: Basic A-Z learning
+  - Level 2: Phonics & Sounds
+  - Level 3: Spelling & Words
+  - Level 4: Sentences & Stories
 
-A few resources to get you started if this is your first Flutter project:
+- **Counting Module**
+  - Level 1: Counting 1 to 10
+  - Level 2: Addition Fun
+  - Level 3: Subtraction
+  - Level 4: Multiplication
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+- Interactive UI with animations
+- Progress tracking for each level
+- Colorful and child-friendly interface
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Tech Stack
+
+- Flutter
+- Dart
+- Android & iOS support
+
+## How to Run
+
+1. Clone this repository
+2. Run `flutter pub get`
+3. Connect your device or start an emulator
+4. Run `flutter run` for development
+5. Run `flutter build apk --release` for release APK
+
+## License
+
+This project is for educational purposes.
+# PapperKid
