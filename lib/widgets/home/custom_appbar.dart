@@ -18,7 +18,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            /// 🔹 LEFT BOX + Text
+            ///  LEFT BOX + Text
             Row(
               children: [
                 /// Box with logo
@@ -65,7 +65,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
               ],
             ),
 
-            /// 🔹 RIGHT CIRCLE AVATAR with settings icon
+            ///  RIGHT CIRCLE AVATAR with settings icon
             Container(
               width: 48,
               height: 48,

@@ -16,7 +16,7 @@ class ParentScreen extends StatelessWidget {
       backgroundColor: Color(0xFFF5F3DD),
       body: Stack(
         children: [
-          /// 🔹 Background Image
+          ///  Background Image
           Positioned(
             right: -size.width * 0.15,
             top: size.height * 0.15,
@@ -27,25 +27,18 @@ class ParentScreen extends StatelessWidget {
             ),
           ),
 
-          /// 🔹 Blur Layer
+          ///  Blur Layer
           BackdropFilter(
             filter: ImageFilter.blur(sigmaX: 3, sigmaY: 3),
             child: Container(color: Colors.transparent),
           ),
 
-          /// 🔹 Main Content
+          ///  Main Content
           SafeArea(
             child: SingleChildScrollView(
               padding: const EdgeInsets.only(left: 32, right: 32, top: 48),
               child: Column(
                 children: [
-                  /// Appbar with Back Arrow
-                  // Padding(
-                  //   padding: const EdgeInsets.symmetric(
-                  //     horizontal: 16,
-                  //     vertical: 12,
-                  //   ),
-                  // child:
                   Row(
                     children: [
                       GestureDetector(
@@ -77,8 +70,6 @@ class ParentScreen extends StatelessWidget {
                       ),
                     ],
                   ),
-
-                  // ),
                   const SizedBox(height: 24),
 
                   /// Center Card

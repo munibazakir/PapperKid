@@ -12,7 +12,7 @@ class CountingQuizFlow extends StatefulWidget {
 
 class _CountingQuizFlowState extends State<CountingQuizFlow> {
   int currentIndex = 0;
-  bool showCongrats = false; // ✅ VERY IMPORTANT
+  bool showCongrats = false;
 
   final List<QuizQuestion> questions = quizQuestions;
 
@@ -20,7 +20,7 @@ class _CountingQuizFlowState extends State<CountingQuizFlow> {
   Widget build(BuildContext context) {
     final bool isLastQuiz = currentIndex == questions.length - 1;
 
-    /// 🎉 CONGRATS SCREEN (AFTER EVERY QUIZ)
+    ///  CONGRATS SCREEN (AFTER EVERY QUIZ)
     if (showCongrats) {
       return CustomCongrtScreen(
         headingText: "Great Job!",
@@ -28,9 +28,9 @@ class _CountingQuizFlowState extends State<CountingQuizFlow> {
         leftText: isLastQuiz ? "" : "Next Quiz",
         rightText: "Back to Map",
 
-        // ✅ NEXT QUIZ
+        //  NEXT QUIZ
         onNextLessonPressed: () {
-          if (isLastQuiz) return; // ⛔ last quiz pe kuch nahi
+          if (isLastQuiz) return;
 
           setState(() {
             currentIndex++;
@@ -38,14 +38,14 @@ class _CountingQuizFlowState extends State<CountingQuizFlow> {
           });
         },
 
-        // ✅ BACK TO LEVEL
+        //  BACK TO LEVEL
         onBackToMapPressed: () {
           Navigator.pop(context);
         },
       );
     }
 
-    /// 🧠 QUIZ SCREEN
+    ///  QUIZ SCREEN
     final currentQuestion = questions[currentIndex];
 
     return QuizScreen(
@@ -53,7 +53,7 @@ class _CountingQuizFlowState extends State<CountingQuizFlow> {
       levelText: "Quiz ${currentIndex + 1}/${questions.length}",
       progress: (currentIndex + 1) / questions.length,
 
-      // ✅ CORRECT ANSWER → SHOW CONGRATS
+      //  CORRECT ANSWER → SHOW CONGRATS
       onCorrectTap: () {
         setState(() {
           showCongrats = true;

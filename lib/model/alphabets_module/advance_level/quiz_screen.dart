@@ -1,3 +1,4 @@
+import 'package:alphabetsandcounting/utils/image.dart';
 import 'package:alphabetsandcounting/widgets/alphabets/general/quiz_appbar.dart';
 import 'package:flutter/material.dart';
 
@@ -26,8 +27,6 @@ class QuizScreen extends StatelessWidget {
         child: Column(
           children: [
             QuizAppbar(heading: "Level 3"),
-
-            // const SizedBox(height: 12),
 
             /// Quiz Container
             Container(
@@ -75,11 +74,9 @@ class QuizScreen extends StatelessWidget {
             /// Curved Row of 3 options
             AlphabetsQuizOptions(current: current, onNext: onNext),
 
-            // const SizedBox(height: 12),
-
             /// Center Image
             Image.asset(
-              'assets/images/quizImage.png',
+              AppImage.quizImg,
               width: 112,
               height: 200,
               fit: BoxFit.contain,

@@ -44,6 +44,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               setState(() => currentIndex = index);
             },
             children: [
+              // Onboarding Screen 1
               OnboardPage(
                 image: AppImage.onboarding1,
                 title: 'Explore the',
@@ -57,6 +58,8 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 containerColor: Colors.white,
                 btnColor: Color(0xFFFF6B6B),
               ),
+
+              // Onboarding Screen 2
               OnboardPage(
                 image: AppImage.onboarding2,
                 title: 'Climb',
@@ -71,6 +74,8 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 containerColor: Colors.transparent,
                 btnColor: Color(0xFF457B9D),
               ),
+
+              // Onboarding Screen 3
               OnboardPage(
                 image: AppImage.onboarding3,
                 title: 'Earn Awesome',
@@ -87,7 +92,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
             ],
           ),
 
-          /// SKIP (OVERLAY — NO GAP)
+          /// SKIP
           TopSkipText(),
         ],
       ),

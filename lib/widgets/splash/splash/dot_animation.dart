@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-// ignore: camel_case_types
 class dot_animation extends StatelessWidget {
   const dot_animation({
     super.key,

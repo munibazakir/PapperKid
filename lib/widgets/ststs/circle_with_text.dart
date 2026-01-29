@@ -23,32 +23,23 @@ class CircleWithText extends StatelessWidget {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        // 🔵 Circle
+        //  Circle
         Container(
           width: 48,
           height: 48,
           decoration: BoxDecoration(
             color: circleColor,
             shape: BoxShape.circle,
-            border: Border.all(
-              color: borderColor,
-              width: 2,
-            ),
+            border: Border.all(color: borderColor, width: 2),
           ),
           child: hasIcon && icon != null
-              ? Center(
-                  child: Icon(
-                    icon,
-                    color: Colors.white,
-                    size: 24,
-                  ),
-                )
+              ? Center(child: Icon(icon, color: Colors.white, size: 24))
               : null,
         ),
 
         const SizedBox(height: 8),
 
-        // 📝 Text
+        //  Text
         Flexible(
           child: SizedBox(
             width: 56, // optional fixed width

@@ -59,10 +59,10 @@ class FeatureBox extends StatelessWidget {
               boxShadow: shadow
                   ? [
                       BoxShadow(
-                        color: shadowColor.withOpacity(0.45),
-                        blurRadius: 16,
-                        spreadRadius: 0,
-                        offset: const Offset(0, 10),
+                        color: shadowColor,
+                        blurRadius: 12,
+                        spreadRadius: -4,
+                        offset: const Offset(0, 20), // only bottom
                       ),
                     ]
                   : [],

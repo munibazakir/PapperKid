@@ -11,11 +11,11 @@ class CountAppBar extends StatelessWidget {
     return Container(
       width: double.infinity,
       height: 112,
-      padding: const EdgeInsets.only(top: 48, left: 14, right: 14, bottom: 16),
+      padding: const EdgeInsets.only(top: 24, left: 14, right: 14, bottom: 16),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          ///  LEFT BOX (Back)
+          ///  LEFT BOX
           GestureDetector(
             onTap: onBackTap ?? () => Navigator.pop(context),
             child: Container(
@@ -54,7 +54,7 @@ class CountAppBar extends StatelessWidget {
           ),
           const SizedBox(width: 20),
 
-          ///  RIGHT BOX (Star)
+          ///  RIGHT BOX
           GestureDetector(
             onTap: onStarTap,
             child: Container(

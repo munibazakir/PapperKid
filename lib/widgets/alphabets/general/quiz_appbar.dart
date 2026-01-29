@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import '../advance/alphabet_quiz_question.dart';
 
 class QuizAppbar extends StatelessWidget implements PreferredSizeWidget {

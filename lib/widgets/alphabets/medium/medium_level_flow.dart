@@ -185,9 +185,9 @@ class _MediumLevelFlowState extends State<MediumLevelFlow> {
         leftText: isLastLetter ? "" : "Next Letter",
         rightText: "Back to Map",
 
-        //  NON-NULL CALLBACK (NO ERROR)
+        //  NON-NULL CALLBACK 
         onNextLessonPressed: () {
-          if (isLastLetter) return; // Z pe kuch nahi
+          if (isLastLetter) return; 
 
           setState(() {
             currentIndex++;

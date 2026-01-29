@@ -19,7 +19,10 @@ class LeftContainerWithImg extends StatelessWidget {
       height: leftHeight,
       decoration: BoxDecoration(
         color: const Color(0xFFE63946),
-        borderRadius: BorderRadius.circular(24),
+        borderRadius: BorderRadius.only(
+          topRight: Radius.circular(24),
+          bottomRight: Radius.circular(24),
+        ),
       ),
       child: Center(
         child: Image.asset(

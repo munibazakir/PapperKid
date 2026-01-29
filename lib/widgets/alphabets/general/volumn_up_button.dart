@@ -17,11 +17,11 @@ class PlaySoundButton extends StatelessWidget {
           height: 88,
           padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 24),
           decoration: BoxDecoration(
-            color: const Color(0xFFFF4B4B), // button background
+            color: const Color(0xFFFF4B4B), 
             borderRadius: BorderRadius.circular(24),
             border: Border(
               bottom: BorderSide(
-                color: const Color(0xFFB91C1C), // bottom border color
+                color: const Color(0xFFB91C1C), 
                 width: 8,
               ),
             ),
@@ -32,7 +32,7 @@ class PlaySoundButton extends StatelessWidget {
               /// ICON
               Icon(Icons.volume_up, size: 36, color: Colors.white),
 
-              SizedBox(width: 12), // gap 12px
+              SizedBox(width: 12), 
               /// TEXT
               Text(
                 "Play Sound",

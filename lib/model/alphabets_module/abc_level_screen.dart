@@ -43,7 +43,7 @@ class _AbcLevelScreenState extends State<AbcLevelScreen>
         )
         .toList();
 
-    // Staggered animation with delay
+    // animation with delay
     for (int i = 0; i < _controllers.length; i++) {
       Future.delayed(Duration(milliseconds: 150 * i), () {
         if (mounted) _controllers[i].forward();
@@ -82,7 +82,7 @@ class _AbcLevelScreenState extends State<AbcLevelScreen>
       backgroundColor: const Color(0xFFE0F2FE),
       body: SafeArea(
         child: SingleChildScrollView(
-          padding: const EdgeInsets.all(16),
+          
           child: Column(
             children: [
               ModuleHomeAppbar(
@@ -91,7 +91,7 @@ class _AbcLevelScreenState extends State<AbcLevelScreen>
               ),
               const SizedBox(height: 24),
 
-              // ✅ Level 1 - Basic
+              //  Level 1 - Basic
               _buildAnimatedBox(
                 index: 0,
                 child: FeatureBox(
@@ -102,7 +102,7 @@ class _AbcLevelScreenState extends State<AbcLevelScreen>
                   heading: "Basic",
                   description: "Learning A to Z",
                   borderColor: const Color(0xFFB7F2CC),
-                  shadowColor: const Color(0xFFC9F5D9),
+                  shadowColor: Color(0xFFC9F5D9),
                   textColor: const Color(0xFF4ADE80),
                   onTap: () {
                     Navigator.push(
@@ -112,9 +112,8 @@ class _AbcLevelScreenState extends State<AbcLevelScreen>
                   },
                 ),
               ),
-              const SizedBox(height: 24),
 
-              // ✅ Level 2 - Medium
+              //  Level 2 - Medium
               _buildAnimatedBox(
                 index: 1,
                 child: FeatureBox(
@@ -135,9 +134,8 @@ class _AbcLevelScreenState extends State<AbcLevelScreen>
                   },
                 ),
               ),
-              const SizedBox(height: 24),
 
-              // ✅ Level 3 - Advance
+              //  Level 3 - Advance
               _buildAnimatedBox(
                 index: 2,
                 child: FeatureBox(
@@ -163,9 +161,8 @@ class _AbcLevelScreenState extends State<AbcLevelScreen>
                   },
                 ),
               ),
-              const SizedBox(height: 24),
 
-              // ✅ Level 4 - Last FeatureBox
+              //  Level 4 - Last FeatureBox
               _buildAnimatedBox(
                 index: 3,
                 child: LastFeatureBox(
@@ -179,7 +176,7 @@ class _AbcLevelScreenState extends State<AbcLevelScreen>
               ),
               const SizedBox(height: 24),
 
-              // ✅ ActionBox (optional, no animation)
+              //  ActionBox
               ActionBox(
                 height: 42,
                 image: AppImage.touchApp,

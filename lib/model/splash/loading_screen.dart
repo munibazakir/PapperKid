@@ -40,7 +40,7 @@ class _LoadingScreenState extends State<LoadingScreen>
     // Second animation
     _animation = Tween<double>(
       begin: 0,
-      end: 3.1416, //  180 degree (π radians)
+      end: 3.1416, //  180 degree
     ).animate(CurvedAnimation(parent: _yController, curve: Curves.easeInOut));
 
     _yController.repeat(reverse: true);
@@ -87,18 +87,28 @@ class _LoadingScreenState extends State<LoadingScreen>
           child: Column(
             children: [
               /// IMAGE
-              AnimatedBuilder(
-                animation: _animation,
-                builder: (context, child) {
-                  return Transform(
-                    alignment: Alignment.center,
-                    transform: Matrix4.identity()
-                      ..setEntry(3, 2, 0.001) //  perspective
-                      ..rotateY(_animation.value),
-                    child: child,
-                  );
-                },
-                child: Image.asset(AppImage.loadingImg1, width: 42, height: 72),
+              Align(
+                alignment: Alignment.centerLeft,
+                child: Padding(
+                  padding: EdgeInsets.only(left: 24, top: 48),
+                  child: AnimatedBuilder(
+                    animation: _animation,
+                    builder: (context, child) {
+                      return Transform(
+                        alignment: Alignment.center,
+                        transform: Matrix4.identity()
+                          ..setEntry(3, 2, 0.001) //  perspective
+                          ..rotateY(_animation.value),
+                        child: child,
+                      );
+                    },
+                    child: Image.asset(
+                      AppImage.loadingImg1,
+                      width: 42,
+                      height: 72,
+                    ),
+                  ),
+                ),
               ),
 
               Padding(
@@ -113,14 +123,17 @@ class _LoadingScreenState extends State<LoadingScreen>
                 ),
               ),
 
-              Image.asset(
-                AppImage.loadingImg3,
-                width: 288,
-                height: 288,
-                fit: BoxFit.contain,
+              Transform.translate(
+                offset: Offset(0, -30),
+                child: Image.asset(
+                  AppImage.loadingImg3,
+                  width: 288,
+                  height: 288,
+                  fit: BoxFit.contain,
+                ),
               ),
 
-              const SizedBox(height: 34),
+              const SizedBox(height: 24),
 
               ProgressBox(
                 barWidth: barWidth,
@@ -148,25 +161,26 @@ class _LoadingScreenState extends State<LoadingScreen>
               /// DESCRIPTION
               ProgressPersentage(activeIndex: activeIndex, progress: progress),
 
-              AnimatedBuilder(
-                animation: _animation,
-                builder: (context, child) {
-                  return Transform(
-                    alignment: Alignment.center,
-                    transform: Matrix4.identity()
-                      ..setEntry(3, 2, 0.001)
-                      ..rotateY(_animation.value),
-                    child: child,
-                  );
-                },
+              Align(
+                alignment: Alignment.centerLeft,
                 child: Padding(
-                  padding: EdgeInsets.only(left: 10),
-                  // child: RotationTransition(
-                  //   turns: _spinController,
-                  child: Image.asset(
-                    AppImage.loadingImg4,
-                    width: 45,
-                    height: 86,
+                  padding: EdgeInsets.only(left: 24),
+                  child: AnimatedBuilder(
+                    animation: _animation,
+                    builder: (context, child) {
+                      return Transform(
+                        alignment: Alignment.center,
+                        transform: Matrix4.identity()
+                          ..setEntry(3, 2, 0.001) //  perspective
+                          ..rotateY(_animation.value),
+                        child: child,
+                      );
+                    },
+                    child: Image.asset(
+                      AppImage.loadingImg4,
+                      width: 42,
+                      height: 72,
+                    ),
                   ),
                 ),
               ),

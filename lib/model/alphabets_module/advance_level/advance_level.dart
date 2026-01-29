@@ -22,8 +22,6 @@ class _AdvancedLevelFlowState extends State<AdvancedLevelFlow> {
   int currentIndex = 0;
   bool showCongrats = false;
 
-  // final AudioPlayer player = AudioPlayer();
-
   @override
   void initState() {
     super.initState();

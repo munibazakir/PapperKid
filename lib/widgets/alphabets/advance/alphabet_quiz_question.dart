@@ -12,8 +12,8 @@ class AlphabetQuizQuestion extends StatelessWidget {
       height: 52,
       padding: const EdgeInsets.fromLTRB(24, 8, 24, 8),
       decoration: BoxDecoration(
-        color: Color(0xFFFFFFFF), // gold background
-        borderRadius: BorderRadius.circular(9999), // fully rounded
+        color: Color(0xFFFFFFFF),
+        borderRadius: BorderRadius.circular(9999),
         border: Border.all(color: Color(0xFFFDEFD6), width: 4),
       ),
       child: Center(
@@ -23,7 +23,7 @@ class AlphabetQuizQuestion extends StatelessWidget {
             fontFamily: 'SplineSans',
             fontSize: 20,
             fontWeight: FontWeight.w700,
-            color: Color(0xFF374151), // change if needed
+            color: Color(0xFF374151),
           ),
           textAlign: TextAlign.center,
         ),

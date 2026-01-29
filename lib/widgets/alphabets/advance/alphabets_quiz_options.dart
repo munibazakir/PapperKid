@@ -19,7 +19,7 @@ class AlphabetsQuizOptions extends StatelessWidget {
         children: [
           /// First Option (left, slightly lower)
           Positioned(
-            left: 0,
+            left: 5,
             bottom: -5,
             child: GestureDetector(
               onTap: () {
@@ -103,7 +103,7 @@ class AlphabetsQuizOptions extends StatelessWidget {
 
           /// Third Option (right, slightly lower)
           Positioned(
-            right: 0,
+            right: 5,
             bottom: -5,
             child: GestureDetector(
               onTap: () {

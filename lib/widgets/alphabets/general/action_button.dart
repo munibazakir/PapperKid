@@ -26,7 +26,7 @@ class ActionBox extends StatelessWidget {
         ),
       ),
       child: Row(
-        mainAxisSize: MainAxisSize.min, // 🔥 content-based width
+        mainAxisSize: MainAxisSize.min, //  content-based width
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Image.asset(
@@ -41,8 +41,7 @@ class ActionBox extends StatelessWidget {
               fontFamily: "SplineSans",
               fontSize: 14,
               fontWeight: FontWeight.w500,
-              color: Color(0xFF334155
-),
+              color: Color(0xFF334155),
             ),
           ),
         ],

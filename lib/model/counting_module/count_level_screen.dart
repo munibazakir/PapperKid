@@ -5,6 +5,7 @@ import '../../widgets/count/advance/advance_level_flow.dart';
 import '../../widgets/count/basic/counting_flow.dart';
 import '../../widgets/count/general/count_appbar.dart';
 import '../../widgets/count/general/count_level_button.dart';
+import '../../widgets/count/general/count_level_button_last.dart';
 import '../../widgets/count/general/count_navbar.dart';
 
 class CountLevelScreen extends StatefulWidget {
@@ -75,7 +76,7 @@ class _CountLevelScreenState extends State<CountLevelScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Color(0xFFFDF9F4),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 14),
         child: SafeArea(
@@ -166,17 +167,7 @@ class _CountLevelScreenState extends State<CountLevelScreen>
                       // Level 4
                       _buildAnimatedButton(
                         index: 3,
-                        child: CountLevelButton(
-                          tagColor: Color(0xFFF4AE34),
-                          tagText: "Level 4",
-                          heading: 'Elite',
-                          description: 'Multiplication',
-                          imagePath: AppImage.countlevel4,
-                          progress: 0.4,
-                          progressColor: Color(0xFFF4AE34),
-                          descriptionColor: Color(0xFFB99E85),
-                          onTap: () {},
-                        ),
+                        child: CountLevelLastButton(),
                       ),
                     ],
                   ),
@@ -184,7 +175,7 @@ class _CountLevelScreenState extends State<CountLevelScreen>
 
                 const SizedBox(height: 32),
 
-                // Bottom Center Container (optional, no animation)
+                // Bottom Center Container 
                 Container(
                   width: 282.953125,
                   height: 36,

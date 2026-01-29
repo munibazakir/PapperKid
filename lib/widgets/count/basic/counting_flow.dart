@@ -19,7 +19,6 @@ class _CountingFlowState extends State<CountingFlow> {
   Widget build(BuildContext context) {
     final bool isLastNumber = currentIndex == numbers.length - 1;
 
-    /// Last number ke baad → Congratulations
     ///  CONGRATS SCREEN
     if (showCongrats) {
       return CustomCongrtScreen(
@@ -29,7 +28,7 @@ class _CountingFlowState extends State<CountingFlow> {
         rightText: "Back to Map",
 
         onNextLessonPressed: () {
-          if (isLastNumber) return; // last number pe kuch nahi
+          if (isLastNumber) return; // last number
 
           setState(() {
             currentIndex++;

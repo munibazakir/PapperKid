@@ -32,5 +32,8 @@ class AppImage {
   static String countLevel3 = "assets/images/countlevel3.png";
   static String countlevel4 = "assets/images/countlevel4.png";
 
-  static String RightImage = "assets/images/right_image.png";
+  static String rightImage = "assets/images/right_image.png";
+
+  // Quiz Image
+  static String quizImg = 'assets/images/quizImage.png';
 }

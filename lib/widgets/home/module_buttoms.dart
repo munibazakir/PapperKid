@@ -78,7 +78,7 @@ class ModuleButtoms extends StatelessWidget {
                 ),
               ),
 
-              /// RIGHT ICON (NO OVERFLOW)
+              /// RIGHT ICON
               Padding(
                 padding: const EdgeInsets.only(right: 24),
                 child: Container(

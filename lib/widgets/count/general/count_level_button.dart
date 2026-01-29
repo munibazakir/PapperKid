@@ -69,8 +69,6 @@ class CountLevelButton extends StatelessWidget {
                 ),
               ),
 
-              // const SizedBox(height: 12),
-
               ///  IMAGE + TEXT ROW
               Row(
                 mainAxisSize: MainAxisSize.min,
@@ -80,8 +78,8 @@ class CountLevelButton extends StatelessWidget {
                     borderRadius: BorderRadius.circular(16),
                     child: Image.asset(
                       imagePath,
-                      width: 48,
-                      height: 48,
+                      width: 64,
+                      height: 64,
                       fit: BoxFit.cover,
                     ),
                   ),

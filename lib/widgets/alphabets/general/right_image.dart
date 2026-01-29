@@ -23,7 +23,7 @@ class RightImage extends StatelessWidget {
         height: rightHeight,
         decoration: BoxDecoration(borderRadius: BorderRadius.circular(16)),
         child: Image.asset(
-          AppImage.RightImage,
+          AppImage.rightImage,
           width: rightWidth,
           height: rightHeight,
           fit: BoxFit.contain,

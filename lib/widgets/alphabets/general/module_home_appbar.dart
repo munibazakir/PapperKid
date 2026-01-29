@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 class ModuleHomeAppbar extends StatelessWidget implements PreferredSizeWidget {
-  final String heading; // 🔹 Heading text
+  final String heading; 
   final Color bgColor;
 
   const ModuleHomeAppbar({
@@ -18,18 +18,17 @@ class ModuleHomeAppbar extends StatelessWidget implements PreferredSizeWidget {
       height: preferredSize.height,
       color: bgColor,
       child: Padding(
-        padding: const EdgeInsets.fromLTRB(24, 24, 24, 16),
+        padding: const EdgeInsets.fromLTRB(24, 24, 24, 0),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.center, // center vertically
           children: [
-            /// 🔹 LEFT BOX
+            ///  LEFT BOX
             GestureDetector(
               onTap: () {
                 if (Navigator.canPop(context)) {
                   Navigator.pop(context);
                 } else {
-                  // Optional: do nothing or exit app
                   SystemNavigator.pop();
                 }
               },
@@ -51,7 +50,7 @@ class ModuleHomeAppbar extends StatelessWidget implements PreferredSizeWidget {
               ),
             ),
 
-            /// 🔹 CENTER HEADING
+            ///  CENTER HEADING
             Expanded(
               child: Center(
                 child: Text(
@@ -67,7 +66,7 @@ class ModuleHomeAppbar extends StatelessWidget implements PreferredSizeWidget {
               ),
             ),
 
-            /// 🔹 RIGHT CIRCLE AVATAR with settings icon
+            ///  RIGHT CIRCLE AVATAR with settings icon
             Container(
               width: 48,
               height: 48,

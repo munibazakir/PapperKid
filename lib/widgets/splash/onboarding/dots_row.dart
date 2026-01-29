@@ -4,7 +4,7 @@ class DotsRow extends StatelessWidget {
   final int index;
   const DotsRow({super.key, required this.index});
 
-  /// har screen ke liye active dot color
+  /// EVERY SCREEN COLOR
   Color _activeColor(int index) {
     switch (index) {
       case 0:

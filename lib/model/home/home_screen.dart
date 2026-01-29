@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:iconsax/iconsax.dart';
 import '../../widgets/home/custom_appbar.dart';
 import '../../widgets/home/module_buttoms.dart';
 import '../../widgets/home/navbar_position.dart';
@@ -26,7 +25,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
   void initState() {
     super.initState();
 
-    /// ✅ Module 1 Animation
+    ///  Module 1 Animation
     _controller1 = AnimationController(
       vsync: this,
       duration: const Duration(milliseconds: 600),
@@ -36,7 +35,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
       end: Offset.zero,
     ).animate(CurvedAnimation(parent: _controller1, curve: Curves.easeOut));
 
-    /// ✅ Module 2 Animation
+    ///  Module 2 Animation
     _controller2 = AnimationController(
       vsync: this,
       duration: const Duration(milliseconds: 600),
@@ -46,7 +45,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
       end: Offset.zero,
     ).animate(CurvedAnimation(parent: _controller2, curve: Curves.easeOut));
 
-    /// Start animations after first frame to avoid init error
+    /// Start animations after first frame 
     WidgetsBinding.instance.addPostFrameCallback((_) {
       _controller1.forward();
       Future.delayed(const Duration(milliseconds: 200), () {
@@ -76,7 +75,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                 const CustomAppBar(title: "Level 12", subtitle: "Explorer Leo"),
                 const SizedBox(height: 24),
 
-                /// ✅ Module 1 Slide + Fade
+                ///  Module 1 Slide
                 AnimatedBuilder(
                   animation: _controller1,
                   builder: (context, child) {
@@ -96,7 +95,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                     ),
                     heading: "ABC",
                     text: "Alphabets Forest",
-                    icon: Iconsax.tree,
+                    icon: Icons.park,
                     onTap: () {
                       Navigator.push(
                         context,
@@ -109,7 +108,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                 ),
                 const SizedBox(height: 24),
 
-                /// ✅ Module 2 Slide + Fade
+                ///  Module 2 Slide
                 AnimatedBuilder(
                   animation: _controller2,
                   builder: (context, child) {

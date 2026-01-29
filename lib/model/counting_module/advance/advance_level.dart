@@ -65,7 +65,6 @@ class QuizScreenAdvance extends StatelessWidget {
               ),
             ),
 
-            // const SizedBox(height: 32),
             Padding(
               padding: EdgeInsets.only(left: 24, right: 24),
               child: QuizOptionsRow(

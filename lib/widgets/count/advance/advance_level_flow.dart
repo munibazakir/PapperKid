@@ -19,7 +19,7 @@ class AdvanceLevelFlow extends StatefulWidget {
 
 class _AdvanceLevelFlowState extends State<AdvanceLevelFlow> {
   int currentIndex = 0;
-  bool showCongrats = false; // ✅ NEW
+  bool showCongrats = false;
 
   final List<quizQuestionsAdvance> questions = quizQuestionsAdvanceList;
 
@@ -27,7 +27,7 @@ class _AdvanceLevelFlowState extends State<AdvanceLevelFlow> {
   Widget build(BuildContext context) {
     final bool isLastQuiz = currentIndex == questions.length - 1;
 
-    /// 🎉 CONGRATS SCREEN (AFTER EVERY QUIZ)
+    ///  CONGRATS SCREEN (AFTER EVERY QUIZ)
     if (showCongrats) {
       final current = questions[currentIndex];
 
@@ -52,7 +52,7 @@ class _AdvanceLevelFlowState extends State<AdvanceLevelFlow> {
       );
     }
 
-    /// 🧠 QUIZ SCREEN
+    ///  QUIZ SCREEN
     final current = questions[currentIndex];
 
     return QuizScreenAdvance(

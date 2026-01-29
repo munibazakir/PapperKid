@@ -1,21 +1,12 @@
 import 'package:flutter/material.dart';
 
 class ProgressDots extends StatelessWidget {
-  /// Number of dots
   final int count;
-
-  /// Colors for each dot
   final List<Color> colors;
-
-  /// Width and height of the container
   final double width;
   final double height;
-
-  /// Top border color and width
   final Color borderColor;
   final double borderWidth;
-
-  /// Background color of container
   final Color backgroundColor;
 
   const ProgressDots({

@@ -17,7 +17,7 @@ class ElementAppbar extends StatelessWidget implements PreferredSizeWidget {
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            /// 🔹 LEFT BOX with back action
+            ///  LEFT BOX with back action
             GestureDetector(
               onTap: () {
                 if (Navigator.canPop(context)) {
@@ -46,7 +46,7 @@ class ElementAppbar extends StatelessWidget implements PreferredSizeWidget {
 
             const SizedBox(width: 16),
 
-            /// 🔹 CENTER HEADING WITH BOX (responsive)
+            ///  CENTER HEADING WITH BOX 
             Expanded(
               child: ConstrainedBox(
                 constraints: const BoxConstraints(minWidth: 159.234),
@@ -77,7 +77,7 @@ class ElementAppbar extends StatelessWidget implements PreferredSizeWidget {
 
             const SizedBox(width: 16),
 
-            /// 🔹 RIGHT CIRCLE AVATAR
+            ///  RIGHT CIRCLE AVATAR
             Container(
               width: 48,
               height: 48,

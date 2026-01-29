@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
 import '../../model/home/home_screen.dart';
-import 'main_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -14,12 +13,12 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: HomeScreen(), // 👈 direct home
+      home: HomeScreen(), // HOME SCREEN
     );
   }
 }
 
-/// -------------------- CUSTOM BOTTOM NAV --------------------
+///  CUSTOM BOTTOM NAV
 class CustomBottomNav extends StatelessWidget {
   final int currentIndex;
   final Function(int) onTap;

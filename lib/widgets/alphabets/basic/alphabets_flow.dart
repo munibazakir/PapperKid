@@ -54,7 +54,7 @@ class _AlphabetFlowState extends State<AlphabetFlow> {
       nextText: "Next",
       onNext: () {
         setState(() {
-          showCongrats = true; // Har letter ke baad congrats
+          showCongrats = true; // After Every Letter
         });
       },
     );
