@@ -22,15 +22,20 @@ class _CountingQuizFlowState extends State<CountingQuizFlow> {
 
     ///  CONGRATS SCREEN (AFTER EVERY QUIZ)
     if (showCongrats) {
+      final double progress = (currentIndex + 1) / questions.length;
       return CustomCongrtScreen(
         headingText: "Great Job!",
         detailText: "Quiz ${currentIndex + 1} completed",
         leftText: isLastQuiz ? "" : "Next Quiz",
         rightText: "Back to Map",
-
+        progress: progress,
         //  NEXT QUIZ
         onNextLessonPressed: () {
-          if (isLastQuiz) return;
+          if (isLastQuiz) {
+            Navigator.pop(context, true); // 🔥 BASIC LEVEL COMPLETE
+
+            return;
+          }
 
           setState(() {
             currentIndex++;

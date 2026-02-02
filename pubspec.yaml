@@ -36,6 +36,7 @@ dependencies:
   cupertino_icons: ^1.0.8
   iconsax: ^0.0.8
   audioplayers: ^6.5.1
+  get: ^4.7.3
 
 dev_dependencies:
   flutter_test:

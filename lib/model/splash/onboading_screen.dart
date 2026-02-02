@@ -1,6 +1,5 @@
 import 'package:alphabetsandcounting/utils/image.dart';
 import 'package:flutter/material.dart';
-
 import '../../widgets/splash/onboarding/onboardpage.dart';
 import '../../widgets/splash/onboarding/top_skip_text.dart';
 import '../home/home_screen.dart';
@@ -57,6 +56,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 showDots: true,
                 containerColor: Colors.white,
                 btnColor: Color(0xFFFF6B6B),
+                bgColor: Color(0xFFF7F3DE),
               ),
 
               // Onboarding Screen 2
@@ -73,6 +73,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 showDots: true,
                 containerColor: Colors.transparent,
                 btnColor: Color(0xFF457B9D),
+                bgColor: Color(0xFFFFFFFF),
               ),
 
               // Onboarding Screen 3
@@ -88,6 +89,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 showDots: false,
                 containerColor: Colors.transparent,
                 btnColor: Color(0xFFFF6B6B),
+                bgColor: Color(0xFFF7F3DE),
               ),
             ],
           ),

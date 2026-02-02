@@ -29,6 +29,7 @@ class _AdvanceLevelFlowState extends State<AdvanceLevelFlow> {
 
     ///  CONGRATS SCREEN (AFTER EVERY QUIZ)
     if (showCongrats) {
+      final double progress = (currentIndex + 1) / questions.length;
       final current = questions[currentIndex];
 
       return CustomCongrtScreen(
@@ -36,7 +37,7 @@ class _AdvanceLevelFlowState extends State<AdvanceLevelFlow> {
         detailText: "Quiz ${currentIndex + 1} completed",
         leftText: isLastQuiz ? "" : "Next Quiz",
         rightText: "Back to Map",
-
+        progress: progress,
         onNextLessonPressed: () {
           if (isLastQuiz) return; // last quiz pe kuch nahi
 

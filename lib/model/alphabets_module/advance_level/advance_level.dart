@@ -50,11 +50,14 @@ class _AdvancedLevelFlowState extends State<AdvancedLevelFlow> {
 
     //  CONGRATS SCREEN
     if (showCongrats) {
+      final double progress =
+          (currentIndex + 1) / alphabets.length; //  dynamic progress
       return CustomCongrtScreen(
         headingText: "Great Job!",
         detailText: "${current['letter']} completed",
         leftText: isLastLetter ? "" : "Next Letter",
         rightText: "Back to Map",
+        progress: progress,
         onNextLessonPressed: () {
           if (!isLastLetter) {
             setState(() {

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import '../../../widgets/alphabets/general/feature_inner_content.dart';
+import '../../../modules/lock_animation/level_lock.dart';
 
 class FeatureBox extends StatelessWidget {
   final double width;
@@ -13,6 +15,7 @@ class FeatureBox extends StatelessWidget {
   final bool shadow;
   final Color textColor;
   final VoidCallback? onTap;
+  final bool isLocked;
 
   const FeatureBox({
     super.key,
@@ -28,6 +31,7 @@ class FeatureBox extends StatelessWidget {
     this.bottomBorderWidth = 8,
     this.shadow = true,
     this.onTap,
+    this.isLocked = false,
   });
 
   @override
@@ -39,11 +43,11 @@ class FeatureBox extends StatelessWidget {
         borderRadius: BorderRadius.circular(40),
         child: InkWell(
           borderRadius: BorderRadius.circular(40),
-          onTap: onTap,
+          onTap: isLocked ? null : onTap,
           child: Container(
             width: width,
             height: height,
-            padding: const EdgeInsets.all(24),
+            // padding: const EdgeInsets.all(24),
             decoration: BoxDecoration(
               color: Color(0xFFFFFFFF),
               borderRadius: BorderRadius.circular(40),
@@ -67,48 +71,21 @@ class FeatureBox extends StatelessWidget {
                     ]
                   : [],
             ),
-            child: Row(
-              children: [
-                Image.asset(image, width: 96, height: 112, fit: BoxFit.contain),
-                const SizedBox(width: 24),
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        topText,
-                        style: TextStyle(
-                          fontFamily: "SplineSans",
-                          fontSize: 12,
-                          fontWeight: FontWeight.w700,
-                          color: textColor,
-                        ),
-                      ),
-                      const SizedBox(height: 4),
-                      Text(
-                        heading,
-                        style: TextStyle(
-                          fontFamily: "SplineSans",
-                          fontSize: 24,
-                          fontWeight: FontWeight.w700,
-                          color: Color(0xFF1E293B),
-                        ),
-                      ),
-                      const SizedBox(height: 4),
-                      Text(
-                        description,
-                        style: TextStyle(
-                          fontFamily: "SplineSans",
-                          fontWeight: FontWeight.w400,
-                          fontSize: 14,
-                          color: Color(0xFF64748B),
-                        ),
-                      ),
-                    ],
-                  ),
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(32), // inner radius
+              child: LevelLockWrapper(
+                isLocked: isLocked,
+                blurHeight: 165,
+                blurRadius: 32,
+                blurAlignment: Alignment.bottomCenter,
+                child: FeatureInnerContent(
+                  image: image,
+                  topText: topText,
+                  heading: heading,
+                  description: description,
+                  textColor: textColor,
                 ),
-              ],
+              ),
             ),
           ),
         ),

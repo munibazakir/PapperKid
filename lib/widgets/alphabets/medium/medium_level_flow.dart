@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../../model/alphabets_module/abc_level_screen.dart';
 import '../../../model/alphabets_module/congratulation_screen.dart';
 import '../../../model/alphabets_module/medium_level/medium_level.dart';
 
@@ -179,16 +180,24 @@ class _MediumLevelFlowState extends State<MediumLevelFlow> {
 
     ///  CONGRATS SCREEN (after every letter)
     if (showCongrats) {
+      final double progress = (currentIndex + 1) / lettersWithPhonics.length;
       return CustomCongrtScreen(
         headingText: "Great Job!",
         detailText: "${current['letter']} for ${current['phonic']}",
         leftText: isLastLetter ? "" : "Next Letter",
         rightText: "Back to Map",
-
-        //  NON-NULL CALLBACK 
+        progress: progress, //  pass dynamic progress
         onNextLessonPressed: () {
-          if (isLastLetter) return; 
+          final bool isLastLetter = currentIndex == 25;
 
+          if (isLastLetter) {
+            // Navigate to ABC Level Screen and trigger Medium unlock animation
+            Navigator.pop(context, true); //  BASIC LEVEL COMPLETE
+
+            return;
+          }
+
+          // For other letters, just go to the next letter
           setState(() {
             currentIndex++;
             showCongrats = false;

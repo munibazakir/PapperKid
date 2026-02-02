@@ -21,14 +21,19 @@ class _CountingFlowState extends State<CountingFlow> {
 
     ///  CONGRATS SCREEN
     if (showCongrats) {
+      final double progress = (currentIndex + 1) / numbers.length;
       return CustomCongrtScreen(
         headingText: "Great Job!",
         detailText: "${numbers[currentIndex]} completed",
         leftText: isLastNumber ? "" : "Next Number",
         rightText: "Back to Map",
-
+        progress: progress,
         onNextLessonPressed: () {
-          if (isLastNumber) return; // last number
+          if (isLastNumber) {
+            Navigator.pop(context, true); //  BASIC LEVEL COMPLETE
+
+            return;
+          } // last number
 
           setState(() {
             currentIndex++;

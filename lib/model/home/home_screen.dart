@@ -45,7 +45,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
       end: Offset.zero,
     ).animate(CurvedAnimation(parent: _controller2, curve: Curves.easeOut));
 
-    /// Start animations after first frame 
+    /// Start animations after first frame
     WidgetsBinding.instance.addPostFrameCallback((_) {
       _controller1.forward();
       Future.delayed(const Duration(milliseconds: 200), () {
@@ -99,9 +99,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                     onTap: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(
-                          builder: (_) => const AbcLevelScreen(),
-                        ),
+                        MaterialPageRoute(builder: (_) => AbcLevelScreen()),
                       );
                     },
                   ),

@@ -1,93 +1,124 @@
-import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import '../../modules/splash/splash_controller.dart';
+import '../../widgets/splash/splash/dot_widget.dart';
+import '../../widgets/splash/splash/floating_letter.dart';
 import '../../utils/image.dart';
-import '../../widgets/splash/splash/app_slogen.dart';
-import '../../widgets/splash/splash/appname_text.dart';
-import '../../widgets/splash/splash/dot_animation.dart';
-import 'loading_screen.dart';
+import '../../widgets/splash/splash/splash_text.dart';
 
-class SplashScreen extends StatefulWidget {
+class SplashScreen extends StatelessWidget {
   const SplashScreen({super.key});
 
   @override
-  State<SplashScreen> createState() => _SplashScreenState();
-}
-
-class _SplashScreenState extends State<SplashScreen>
-    with SingleTickerProviderStateMixin {
-  late AnimationController _controller;
-  @override
-  void initState() {
-    super.initState();
-
-    _controller = AnimationController(
-      vsync: this,
-      duration: const Duration(milliseconds: 1000),
-    )..repeat();
-
-    // 2 SECOND TIMER
-    Timer(const Duration(seconds: 2), () {
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(builder: (_) => const LoadingScreen()),
-      );
-    });
-  }
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
-  }
-
-  Widget _dot(Color color, double delay) {
-    return dot_animation(controller: _controller, color: color, delay: delay);
-  }
-
-  @override
   Widget build(BuildContext context) {
+    final SplashController controller = Get.put(SplashController());
     final size = MediaQuery.of(context).size;
 
     return Scaffold(
-      backgroundColor: Color(0xFFF5F3DD),
-      body: Center(
-        child: SingleChildScrollView(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              /// IMAGE
-              Image.asset(
-                AppImage.logo,
-                width: size.width * 0.65,
-                height: size.width * 0.65,
+      backgroundColor: const Color(0xFFF5F3DD),
+      body: Stack(
+        children: [
+          // Gradient background
+          Container(
+            decoration: const BoxDecoration(
+              gradient: LinearGradient(
+                colors: [Color(0xFFa8edea), Color(0xFFfed6e3)],
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
               ),
-
-              const SizedBox(height: 30),
-
-              /// HEADING
-              AppNameText(),
-
-              const SizedBox(height: 8),
-
-              /// TEXT
-              AppSlogen(),
-
-              const SizedBox(height: 88),
-
-              /// DOTS
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  _dot(Color(0xFFFF6B6B), 0.0),
-                  const SizedBox(width: 12),
-                  _dot(Color(0xFF4ECDC4), 0.2),
-                  const SizedBox(width: 12),
-                  _dot(Color(0xFFFFE66D), 0.4),
-                ],
-              ),
-            ],
+            ),
           ),
-        ),
+
+          // Floating letters
+          FloatingLetter(
+            letter: 'A',
+            color: Colors.red,
+            left: size.width * 0.15,
+            top: size.height * 0.2,
+            size: 32,
+            floatAnim: controller.floatA,
+          ),
+          FloatingLetter(
+            letter: 'B',
+            color: Colors.blue,
+            left: size.width * 0.65,
+            top: size.height * 0.25,
+            size: 28,
+            floatAnim: controller.floatB,
+          ),
+          FloatingLetter(
+            letter: '3',
+            color: Colors.yellow,
+            left: size.width * 0.35,
+            top: size.height * 0.8,
+            size: 30,
+            floatAnim: controller.float3,
+          ),
+          FloatingLetter(
+            letter: '5',
+            color: Colors.green,
+            left: size.width * 0.6,
+            top: size.height * 0.9,
+            size: 26,
+            floatAnim: controller.float5,
+          ),
+
+          // Center logo
+          Center(
+            child: RotationTransition(
+              turns: controller.rotationAnimation,
+              child: ScaleTransition(
+                scale: controller.scaleAnimation,
+                child: Image.asset(
+                  AppImage.logo,
+                  width: size.width * 0.65,
+                  height: size.width * 0.65,
+                ),
+              ),
+            ),
+          ),
+
+          // App name & slogan
+          Positioned(
+            bottom: 140,
+            left: 0,
+            right: 0,
+            child: SplashTexts(
+              fadeAnimation: controller.textFadeAnimation,
+              nameSlide: controller.nameSlideAnimation,
+              sloganSlide: controller.sloganSlideAnimation,
+            ),
+          ),
+
+          // Bottom dots
+          Positioned(
+            bottom: 60,
+            left: 0,
+            right: 0,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                SplashDot(
+                  color: const Color(0xFFFF6B6B),
+                  delay: 0.0,
+                  controller: controller.scaleController,
+                ),
+                const SizedBox(width: 12),
+                SplashDot(
+                  color: const Color(0xFF4ECDC4),
+                  delay: 0.2,
+                  controller: controller.scaleController,
+                ),
+                const SizedBox(width: 12),
+                SplashDot(
+                  color: const Color(0xFFFFE66D),
+                  delay: 0.4,
+                  controller: controller.scaleController,
+                ),
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }

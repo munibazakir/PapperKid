@@ -7,6 +7,7 @@ class CustomCongrtScreen extends StatelessWidget {
   final String rightText;
   final VoidCallback onNextLessonPressed;
   final VoidCallback onBackToMapPressed;
+  final double progress;
 
   CustomCongrtScreen({
     super.key,
@@ -16,6 +17,7 @@ class CustomCongrtScreen extends StatelessWidget {
     required this.rightText,
     required this.onNextLessonPressed,
     required this.onBackToMapPressed,
+    this.progress = 0.0, // default 0%
   });
 
   @override
@@ -101,12 +103,29 @@ class CustomCongrtScreen extends StatelessWidget {
                       Container(
                         width: double.infinity,
                         height: 16,
-                        padding: const EdgeInsets.all(4),
                         decoration: BoxDecoration(
                           color: Color(0xFFE5E7EB),
                           borderRadius: BorderRadius.circular(9999),
                         ),
+                        child: LayoutBuilder(
+                          builder: (context, constraints) {
+                            return Stack(
+                              children: [
+                                Container(
+                                  width:
+                                      constraints.maxWidth *
+                                      progress, // dynamic width
+                                  decoration: BoxDecoration(
+                                    color: Color(0xFFF4AE34), // filled color
+                                    borderRadius: BorderRadius.circular(9999),
+                                  ),
+                                ),
+                              ],
+                            );
+                          },
+                        ),
                       ),
+
                       const SizedBox(height: 16),
                       Text(
                         'Keep going to unlock advanced levels!',
@@ -125,7 +144,7 @@ class CustomCongrtScreen extends StatelessWidget {
                             width: double.infinity,
                             height: 60,
                             child: ElevatedButton.icon(
-                              onPressed: onNextLessonPressed, // ✅ callback
+                              onPressed: onNextLessonPressed, //  callback
                               icon: Icon(
                                 Icons.play_arrow,
                                 color: Color(0xFF181511),
@@ -156,7 +175,7 @@ class CustomCongrtScreen extends StatelessWidget {
                             width: double.infinity,
                             height: 60,
                             child: ElevatedButton.icon(
-                              onPressed: onBackToMapPressed, // ✅ callback
+                              onPressed: onBackToMapPressed, //  callback
                               icon: Icon(
                                 Icons.map,
                                 color: Color(0xFF181511),

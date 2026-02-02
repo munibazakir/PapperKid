@@ -2,13 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 class ModuleHomeAppbar extends StatelessWidget implements PreferredSizeWidget {
-  final String heading; 
+  final String heading;
   final Color bgColor;
+  final VoidCallback? onBackPressed; // <-- new
 
   const ModuleHomeAppbar({
     super.key,
     required this.heading,
     required this.bgColor,
+    this.onBackPressed, // <-- new
   });
 
   @override
@@ -21,17 +23,19 @@ class ModuleHomeAppbar extends StatelessWidget implements PreferredSizeWidget {
         padding: const EdgeInsets.fromLTRB(24, 24, 24, 0),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          crossAxisAlignment: CrossAxisAlignment.center, // center vertically
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             ///  LEFT BOX
             GestureDetector(
-              onTap: () {
-                if (Navigator.canPop(context)) {
-                  Navigator.pop(context);
-                } else {
-                  SystemNavigator.pop();
-                }
-              },
+              onTap:
+                  onBackPressed ??
+                  () {
+                    if (Navigator.canPop(context)) {
+                      Navigator.pop(context);
+                    } else {
+                      SystemNavigator.pop();
+                    }
+                  },
               child: Container(
                 width: 48,
                 height: 48,
