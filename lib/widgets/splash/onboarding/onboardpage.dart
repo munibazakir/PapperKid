@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import '../../../modules/onboarding/onboarding_controller.dart';
 import 'dots_row.dart';
 
 class OnboardPage extends StatefulWidget {
@@ -9,7 +11,7 @@ class OnboardPage extends StatefulWidget {
   final String description;
   final int index;
   final String buttonText;
-  final VoidCallback onPressed;
+  // final VoidCallback onPressed;
   final bool showDots;
   final Color containerColor;
   final Color btnColor;
@@ -24,7 +26,7 @@ class OnboardPage extends StatefulWidget {
     required this.description,
     required this.index,
     required this.buttonText,
-    required this.onPressed,
+    // required this.onPressed,
     required this.showDots,
     required this.containerColor,
     required this.btnColor,
@@ -42,8 +44,9 @@ class _OnboardPageState extends State<OnboardPage>
   late Animation<Offset> _titleAnimation;
   late Animation<Offset> _highlightAnimation;
   late Animation<Offset> _descAnimation;
-
   late Animation<double> _fadeAnimation;
+
+  final OnboardingController controller = Get.find();
 
   @override
   void initState() {
@@ -111,7 +114,7 @@ class _OnboardPageState extends State<OnboardPage>
         child: SizedBox(
           height: 64,
           child: ElevatedButton(
-            onPressed: widget.onPressed,
+            onPressed: controller.nextPage,
             style: ElevatedButton.styleFrom(
               backgroundColor: widget.btnColor,
               shape: RoundedRectangleBorder(

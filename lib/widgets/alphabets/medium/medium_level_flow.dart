@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
-import '../../../model/alphabets_module/abc_level_screen.dart';
+import 'package:get/get.dart';
 import '../../../model/alphabets_module/congratulation_screen.dart';
 import '../../../model/alphabets_module/medium_level/medium_level.dart';
+import '../../../modules/controller/alphabet_enum.dart';
+import '../../../modules/controller/progress_controller.dart';
 
 class MediumLevelFlow extends StatefulWidget {
   const MediumLevelFlow({super.key});
@@ -11,6 +13,8 @@ class MediumLevelFlow extends StatefulWidget {
 }
 
 class _MediumLevelFlowState extends State<MediumLevelFlow> {
+  final progressController = Get.find<ProgressController>();
+
   int currentIndex = 0;
   bool showCongrats = false; //  NEW
 
@@ -185,10 +189,12 @@ class _MediumLevelFlowState extends State<MediumLevelFlow> {
         headingText: "Great Job!",
         detailText: "${current['letter']} for ${current['phonic']}",
         leftText: isLastLetter ? "" : "Next Letter",
-        rightText: "Back to Map",
+        rewardCount: currentIndex + 1,
         progress: progress, //  pass dynamic progress
         onNextLessonPressed: () {
-          final bool isLastLetter = currentIndex == 25;
+          // final bool isLastLetter = currentIndex == 25;
+          final bool isLastLetter =
+              currentIndex == lettersWithPhonics.length - 1;
 
           if (isLastLetter) {
             // Navigate to ABC Level Screen and trigger Medium unlock animation
@@ -201,6 +207,12 @@ class _MediumLevelFlowState extends State<MediumLevelFlow> {
           setState(() {
             currentIndex++;
             showCongrats = false;
+
+            // 🔹 Save progress for next letter
+            progressController.saveProgress(
+              level: AlphabetLevel.medium,
+              index: currentIndex,
+            );
           });
         },
 
@@ -220,6 +232,12 @@ class _MediumLevelFlowState extends State<MediumLevelFlow> {
       onNext: () {
         setState(() {
           showCongrats = true;
+
+          // 🔹 Save progress for current letter
+          progressController.saveProgress(
+            level: AlphabetLevel.medium,
+            index: currentIndex,
+          );
         });
       },
     );

@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-
-import '../../../model/alphabets_module/abc_level_screen.dart';
+import 'package:get/get.dart';
 import '../../../model/alphabets_module/basic_level/basic_level.dart';
 import '../../../model/alphabets_module/congratulation_screen.dart';
+import '../../../modules/controller/alphabet_enum.dart';
+import '../../../modules/controller/progress_controller.dart';
 
 class AlphabetFlow extends StatefulWidget {
   final int startIndex;
@@ -13,6 +14,8 @@ class AlphabetFlow extends StatefulWidget {
 }
 
 class _AlphabetFlowState extends State<AlphabetFlow> {
+  final progressController = Get.find<ProgressController>();
+
   int currentIndex = 0;
   bool showCongrats = false;
 
@@ -24,7 +27,9 @@ class _AlphabetFlowState extends State<AlphabetFlow> {
   @override
   void initState() {
     super.initState();
-    currentIndex = widget.startIndex;
+
+    //  resume from saved progress
+    currentIndex = progressController.getLastIndex(AlphabetLevel.basic);
   }
 
   @override
@@ -37,12 +42,20 @@ class _AlphabetFlowState extends State<AlphabetFlow> {
         headingText: "Great Job!",
         detailText: "You completed letter ${letters[currentIndex]}",
         leftText: isLastLetter ? "" : "Next Letter",
-        rightText: "⭐",
+        rewardCount: currentIndex + 1,
         progress: progress,
+        //
         onNextLessonPressed: () {
-          if (isLastLetter) {
-            Navigator.pop(context, true); // 🔥 BASIC LEVEL COMPLETE
+          final bool isLastLetter = currentIndex == 25;
 
+          //  Save progress BEFORE moving to next
+          progressController.saveProgress(
+            level: AlphabetLevel.medium,
+            index: currentIndex,
+          );
+
+          if (isLastLetter) {
+            Navigator.pop(context, true); // BASIC LEVEL COMPLETE
             return;
           }
 
@@ -51,6 +64,7 @@ class _AlphabetFlowState extends State<AlphabetFlow> {
             showCongrats = false;
           });
         },
+
         onBackToMapPressed: () => Navigator.pop(context),
       );
     }

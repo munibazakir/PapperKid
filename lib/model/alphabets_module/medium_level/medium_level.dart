@@ -2,8 +2,8 @@ import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import '../../../widgets/alphabets/general/element_appbar.dart';
 import '../../../widgets/alphabets/general/left_container_with_img.dart';
-import '../../../widgets/alphabets/general/right_image.dart';
 import '../../../widgets/alphabets/general/volumn_up_button.dart';
+import '../../../widgets/alphabets/medium/dynamic_right_img.dart';
 
 class MediumLevelScreen extends StatefulWidget {
   final String heading;
@@ -68,10 +68,11 @@ class _MediumLevelScreenState extends State<MediumLevelScreen> {
                     leftHeight: leftHeight,
                     leftImage: widget.leftImage,
                   ),
-                  RightImage(
+                  DynamicRightImage(
                     leftWidth: leftWidth,
                     rightWidth: rightWidth,
                     rightHeight: rightHeight,
+                    imagePath: widget.rightImage,
                   ),
                 ],
               ),

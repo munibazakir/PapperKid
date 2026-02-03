@@ -27,12 +27,12 @@ class _CountingQuizFlowState extends State<CountingQuizFlow> {
         headingText: "Great Job!",
         detailText: "Quiz ${currentIndex + 1} completed",
         leftText: isLastQuiz ? "" : "Next Quiz",
-        rightText: "Back to Map",
+        rewardCount: currentIndex + 1,
         progress: progress,
         //  NEXT QUIZ
         onNextLessonPressed: () {
           if (isLastQuiz) {
-            Navigator.pop(context, true); // 🔥 BASIC LEVEL COMPLETE
+            Navigator.pop(context, true); //  BASIC LEVEL COMPLETE
 
             return;
           }

@@ -4,7 +4,7 @@ class CustomCongrtScreen extends StatelessWidget {
   final String headingText;
   final String detailText;
   final String leftText;
-  final String rightText;
+  final int rewardCount;
   final VoidCallback onNextLessonPressed;
   final VoidCallback onBackToMapPressed;
   final double progress;
@@ -14,7 +14,7 @@ class CustomCongrtScreen extends StatelessWidget {
     required this.headingText,
     required this.detailText,
     required this.leftText,
-    required this.rightText,
+    required this.rewardCount,
     required this.onNextLessonPressed,
     required this.onBackToMapPressed,
     this.progress = 0.0, // default 0%
@@ -88,17 +88,30 @@ class CustomCongrtScreen extends StatelessWidget {
                               color: Color(0xFF747370),
                             ),
                           ),
-                          Text(
-                            rightText,
-                            style: TextStyle(
-                              fontFamily: "SplineSans",
-                              fontWeight: FontWeight.w700,
-                              fontSize: 14,
-                              color: Color(0xFFF4AE34),
-                            ),
+
+                          // 👇 RIGHT SIDE (Number + Coin)
+                          Row(
+                            children: [
+                              Text(
+                                rewardCount.toString(),
+                                style: TextStyle(
+                                  fontFamily: "SplineSans",
+                                  fontWeight: FontWeight.w700,
+                                  fontSize: 14,
+                                  color: Color(0xFFF4AE34),
+                                ),
+                              ),
+                              const SizedBox(width: 4),
+                              Image.asset(
+                                "assets/images/coin.png",
+                                width: 18,
+                                height: 18,
+                              ),
+                            ],
                           ),
                         ],
                       ),
+
                       const SizedBox(height: 16),
                       Container(
                         width: double.infinity,

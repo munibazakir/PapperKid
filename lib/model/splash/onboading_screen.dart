@@ -1,8 +1,9 @@
 import 'package:alphabetsandcounting/utils/image.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import '../../modules/onboarding/onboarding_controller.dart';
 import '../../widgets/splash/onboarding/onboardpage.dart';
 import '../../widgets/splash/onboarding/top_skip_text.dart';
-import '../home/home_screen.dart';
 
 class OnboardingScreen extends StatefulWidget {
   const OnboardingScreen({super.key});
@@ -12,51 +13,32 @@ class OnboardingScreen extends StatefulWidget {
 }
 
 class _OnboardingScreenState extends State<OnboardingScreen> {
-  final PageController _controller = PageController();
-  int currentIndex = 0;
-
-  void nextPage() {
-    if (currentIndex < 2) {
-      _controller.nextPage(
-        duration: const Duration(milliseconds: 300),
-        curve: Curves.easeInOut,
-      );
-    } else {
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(builder: (_) => const HomeScreen()),
-      );
-    }
-  }
+  final OnboardingController controller = Get.put(OnboardingController());
 
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
-
     return Scaffold(
       body: Stack(
         children: [
           /// PAGE VIEW
           PageView(
-            controller: _controller,
-            onPageChanged: (index) {
-              setState(() => currentIndex = index);
-            },
+            controller: controller.pageController,
+            onPageChanged: controller.onPageChanged,
             children: [
               // Onboarding Screen 1
               OnboardPage(
                 image: AppImage.onboarding1,
                 title: 'Explore the',
                 highlight: 'Alphabet Forest!',
-                highlightColor: Color(0xFF2D6A4F),
+                highlightColor: const Color(0xFF2D6A4F),
                 description: 'Learn letters through fun 3D games and sounds.',
                 index: 0,
                 buttonText: 'Next',
-                onPressed: nextPage,
+                // onPressed: controller.nextPage,
                 showDots: true,
                 containerColor: Colors.white,
-                btnColor: Color(0xFFFF6B6B),
-                bgColor: Color(0xFFF7F3DE),
+                btnColor: const Color(0xFFFF6B6B),
+                bgColor: const Color(0xFFF7F3DE),
               ),
 
               // Onboarding Screen 2
@@ -64,16 +46,16 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 image: AppImage.onboarding2,
                 title: 'Climb',
                 highlight: 'Number Mountain!',
-                highlightColor: Color(0xFF457B9D),
+                highlightColor: const Color(0xFF457B9D),
                 description:
                     'Master counting and multiplication with interactive 3D puzzles.',
                 index: 1,
                 buttonText: 'Next Level',
-                onPressed: nextPage,
+                // onPressed: controller.nextPage,
                 showDots: true,
                 containerColor: Colors.transparent,
-                btnColor: Color(0xFF457B9D),
-                bgColor: Color(0xFFFFFFFF),
+                btnColor: const Color(0xFF457B9D),
+                bgColor: Colors.white,
               ),
 
               // Onboarding Screen 3
@@ -81,21 +63,28 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 image: AppImage.onboarding3,
                 title: 'Earn Awesome',
                 highlight: 'Rewards!',
-                highlightColor: Color(0xFFFF6B6B),
+                highlightColor: const Color(0xFFFF6B6B),
                 description: 'Let’s begin the journey',
                 index: 2,
                 buttonText: 'Get Started',
-                onPressed: nextPage,
+                // onPressed: controller.nextPage,
                 showDots: false,
                 containerColor: Colors.transparent,
-                btnColor: Color(0xFFFF6B6B),
-                bgColor: Color(0xFFF7F3DE),
+                btnColor: const Color(0xFFFF6B6B),
+                bgColor: const Color(0xFFF7F3DE),
               ),
             ],
           ),
 
           /// SKIP
-          TopSkipText(),
+          Positioned(
+            top: 50,
+            right: 24,
+            child: GestureDetector(
+              onTap: controller.skip,
+              child: const TopSkipText(),
+            ),
+          ),
         ],
       ),
     );

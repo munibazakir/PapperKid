@@ -8,6 +8,11 @@ final List<quizQuestionsAdvance> quizQuestionsAdvanceList = [
   quizQuestionsAdvance(a: 4, b: 3, sign: '-', options: [7, 1, 9], correct: 1),
   quizQuestionsAdvance(a: 9, b: 1, sign: '-', options: [9, 8, 11], correct: 8),
   quizQuestionsAdvance(a: 6, b: 3, sign: '-', options: [3, 9, 4], correct: 3),
+  quizQuestionsAdvance(a: 5, b: 3, sign: '-', options: [7, 2, 9], correct: 2),
+  quizQuestionsAdvance(a: 7, b: 2, sign: '-', options: [5, 9, 6], correct: 5),
+  quizQuestionsAdvance(a: 4, b: 3, sign: '-', options: [7, 1, 9], correct: 1),
+  quizQuestionsAdvance(a: 9, b: 1, sign: '-', options: [9, 8, 11], correct: 8),
+  quizQuestionsAdvance(a: 6, b: 3, sign: '-', options: [3, 9, 4], correct: 3),
 ];
 
 class AdvanceLevelFlow extends StatefulWidget {
@@ -27,7 +32,7 @@ class _AdvanceLevelFlowState extends State<AdvanceLevelFlow> {
   Widget build(BuildContext context) {
     final bool isLastQuiz = currentIndex == questions.length - 1;
 
-    ///  CONGRATS SCREEN (AFTER EVERY QUIZ)
+    //  CONGRATS SCREEN (AFTER EVERY QUIZ)
     if (showCongrats) {
       final double progress = (currentIndex + 1) / questions.length;
       final current = questions[currentIndex];
@@ -36,7 +41,7 @@ class _AdvanceLevelFlowState extends State<AdvanceLevelFlow> {
         headingText: "Great Job!",
         detailText: "Quiz ${currentIndex + 1} completed",
         leftText: isLastQuiz ? "" : "Next Quiz",
-        rightText: "Back to Map",
+        rewardCount: currentIndex + 1,
         progress: progress,
         onNextLessonPressed: () {
           if (isLastQuiz) return; // last quiz pe kuch nahi

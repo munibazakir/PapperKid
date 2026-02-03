@@ -56,7 +56,7 @@ class _AdvancedLevelFlowState extends State<AdvancedLevelFlow> {
         headingText: "Great Job!",
         detailText: "${current['letter']} completed",
         leftText: isLastLetter ? "" : "Next Letter",
-        rightText: "Back to Map",
+        rewardCount: currentIndex + 1,
         progress: progress,
         onNextLessonPressed: () {
           if (!isLastLetter) {
@@ -76,7 +76,7 @@ class _AdvancedLevelFlowState extends State<AdvancedLevelFlow> {
         headingText: "Alphabet King",
         detailText: "You have completed all letters test",
         leftText: "",
-        rightText: "Back to Map",
+        rewardCount: currentIndex + 1,
         onNextLessonPressed: () {},
         onBackToMapPressed: () => Navigator.pop(context),
       );

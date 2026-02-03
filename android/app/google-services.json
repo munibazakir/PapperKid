@@ -1,0 +1,29 @@
+{
+    "project_info": {
+        "project_number": "412506940799",
+        "project_id": "paper-kids",
+        "storage_bucket": "paper-kids.firebasestorage.app"
+    },
+    "client": [
+        {
+            "client_info": {
+                "mobilesdk_app_id": "1:412506940799:android:16017c9ccbe4ffca63e64a",
+                "android_client_info": {
+                    "package_name": "com.miracle.PaperKids"
+                }
+            },
+            "oauth_client": [],
+            "api_key": [
+                {
+                    "current_key": "AIzaSyBvGUtkzAOwq159joqEallZQYe-sFsDRZ0"
+                }
+            ],
+            "services": {
+                "appinvite_service": {
+                    "other_platform_oauth_client": []
+                }
+            }
+        }
+    ],
+    "configuration_version": "1"
+}

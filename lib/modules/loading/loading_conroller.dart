@@ -62,7 +62,7 @@ class LoadingController extends GetxController
       } else {
         timer.cancel();
         Future.delayed(const Duration(milliseconds: 500), () {
-          Get.off(() => const OnboardingScreen());
+          Get.off(() => OnboardingScreen());
         });
       }
     });

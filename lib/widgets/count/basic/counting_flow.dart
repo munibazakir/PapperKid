@@ -26,7 +26,7 @@ class _CountingFlowState extends State<CountingFlow> {
         headingText: "Great Job!",
         detailText: "${numbers[currentIndex]} completed",
         leftText: isLastNumber ? "" : "Next Number",
-        rightText: "Back to Map",
+        rewardCount: currentIndex + 1,
         progress: progress,
         onNextLessonPressed: () {
           if (isLastNumber) {

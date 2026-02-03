@@ -37,6 +37,7 @@ dependencies:
   iconsax: ^0.0.8
   audioplayers: ^6.5.1
   get: ^4.7.3
+  shared_preferences: ^2.5.4
 
 dev_dependencies:
   flutter_test:

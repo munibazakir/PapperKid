@@ -38,7 +38,7 @@ class _CountLevelScreenState extends State<CountLevelScreen>
   final GlobalKey _basicKey = GlobalKey();
   final GlobalKey _mediumKey = GlobalKey();
   final GlobalKey _advanceKey = GlobalKey();
-  final GlobalKey _sentenceKey = GlobalKey();
+  final GlobalKey _eliteKey = GlobalKey();
 
   @override
   void initState() {
@@ -98,7 +98,7 @@ class _CountLevelScreenState extends State<CountLevelScreen>
       ),
     );
 
-    overlay?.insert(entry);
+    overlay.insert(entry);
   }
 
   @override
@@ -234,7 +234,7 @@ class _CountLevelScreenState extends State<CountLevelScreen>
                               );
 
                               if (completed == true) {
-                                await flyCoins(_advanceKey, _sentenceKey, 3);
+                                await flyCoins(_advanceKey, _eliteKey, 3);
                               }
                             },
                           ),
