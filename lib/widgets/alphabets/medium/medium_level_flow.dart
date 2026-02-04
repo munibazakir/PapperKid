@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../model/alphabets_module/congratulation_screen.dart';
 import '../../../model/alphabets_module/medium_level/medium_level.dart';
-import '../../../modules/controller/alphabet_enum.dart';
 import '../../../modules/controller/progress_controller.dart';
 
 class MediumLevelFlow extends StatefulWidget {
@@ -17,6 +16,13 @@ class _MediumLevelFlowState extends State<MediumLevelFlow> {
 
   int currentIndex = 0;
   bool showCongrats = false; //  NEW
+
+  @override
+  void initState() {
+    super.initState();
+    // Load last index from memory
+    currentIndex = progressController.getLastIndexMedium();
+  }
 
   final List<Map<String, String>> lettersWithPhonics = [
     {
@@ -191,28 +197,25 @@ class _MediumLevelFlowState extends State<MediumLevelFlow> {
         leftText: isLastLetter ? "" : "Next Letter",
         rewardCount: currentIndex + 1,
         progress: progress, //  pass dynamic progress
+
         onNextLessonPressed: () {
-          // final bool isLastLetter = currentIndex == 25;
           final bool isLastLetter =
               currentIndex == lettersWithPhonics.length - 1;
 
-          if (isLastLetter) {
-            // Navigate to ABC Level Screen and trigger Medium unlock animation
-            Navigator.pop(context, true); //  BASIC LEVEL COMPLETE
+          // Save current progress
+          progressController.saveLastIndexMedium(currentIndex);
+          if (currentIndex > progressController.getUnlockedMediumLevel()) {
+            progressController.setUnlockedMediumLevel(currentIndex);
+          }
 
+          if (isLastLetter) {
+            Navigator.pop(context, true); // Medium level complete
             return;
           }
 
-          // For other letters, just go to the next letter
           setState(() {
             currentIndex++;
             showCongrats = false;
-
-            // 🔹 Save progress for next letter
-            progressController.saveProgress(
-              level: AlphabetLevel.medium,
-              index: currentIndex,
-            );
           });
         },
 
@@ -233,11 +236,11 @@ class _MediumLevelFlowState extends State<MediumLevelFlow> {
         setState(() {
           showCongrats = true;
 
-          // 🔹 Save progress for current letter
-          progressController.saveProgress(
-            level: AlphabetLevel.medium,
-            index: currentIndex,
-          );
+          // Save current progress
+          progressController.saveLastIndexMedium(currentIndex);
+          if (currentIndex > progressController.getUnlockedMediumLevel()) {
+            progressController.setUnlockedMediumLevel(currentIndex);
+          }
         });
       },
     );

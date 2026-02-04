@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import '../../../model/alphabets_module/congratulation_screen.dart';
 import '../../../model/counting_module/advance/advance_level.dart';
+import '../../../modules/controller/progress_controller.dart';
 
 final List<quizQuestionsAdvance> quizQuestionsAdvanceList = [
   quizQuestionsAdvance(a: 5, b: 3, sign: '-', options: [7, 2, 9], correct: 2),
@@ -23,8 +25,19 @@ class AdvanceLevelFlow extends StatefulWidget {
 }
 
 class _AdvanceLevelFlowState extends State<AdvanceLevelFlow> {
+  late final ProgressController progressController;
   int currentIndex = 0;
   bool showCongrats = false;
+
+  @override
+  void initState() {
+    super.initState();
+    // player.setReleaseMode(ReleaseMode.stop);
+
+    progressController = Get.find<ProgressController>();
+    //  Load last letter index from memory
+    currentIndex = progressController.getLastIndexAdvance();
+  }
 
   final List<quizQuestionsAdvance> questions = quizQuestionsAdvanceList;
 
@@ -44,12 +57,22 @@ class _AdvanceLevelFlowState extends State<AdvanceLevelFlow> {
         rewardCount: currentIndex + 1,
         progress: progress,
         onNextLessonPressed: () {
-          if (isLastQuiz) return; // last quiz pe kuch nahi
+          final bool isLastLetter = currentIndex == questions.length - 1;
 
-          setState(() {
-            currentIndex++;
-            showCongrats = false;
-          });
+          // Save progress
+          progressController.saveLastIndexAdvance(currentIndex);
+          if (currentIndex > progressController.getUnlockedAdvanceLevel()) {
+            progressController.setUnlockedAdvanceLevel(currentIndex);
+          }
+
+          if (!isLastLetter) {
+            setState(() {
+              currentIndex++;
+              showCongrats = false;
+            });
+          } else {
+            Navigator.pop(context, true); // Advance Level complete
+          }
         },
 
         onBackToMapPressed: () {
@@ -69,6 +92,12 @@ class _AdvanceLevelFlowState extends State<AdvanceLevelFlow> {
       onCorrectTap: () {
         setState(() {
           showCongrats = true; // show congrats after correct answer
+
+          // Save current progress
+          progressController.saveLastIndexAdvance(currentIndex);
+          if (currentIndex > progressController.getUnlockedAdvanceLevel()) {
+            progressController.setUnlockedAdvanceLevel(currentIndex);
+          }
         });
       },
     );

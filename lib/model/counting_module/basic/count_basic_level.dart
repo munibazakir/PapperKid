@@ -1,8 +1,9 @@
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import '../../../modules/controller/progress_controller.dart';
 import '../../../widgets/alphabets/general/element_appbar.dart';
 import '../../../widgets/alphabets/general/left_container_with_img.dart';
-import '../../../widgets/alphabets/general/right_image.dart';
 import '../../../widgets/alphabets/general/volumn_up_button.dart';
 
 class CountingScreen extends StatefulWidget {
@@ -24,11 +25,15 @@ class CountingScreen extends StatefulWidget {
 }
 
 class _CountingScreenState extends State<CountingScreen> {
+  late final ProgressController progress;
   late final AudioPlayer player;
+  int currentIndex = 0;
 
   @override
   void initState() {
     super.initState();
+    progress = Get.find<ProgressController>();
+    currentIndex = progress.getLastIndex(ModuleType.counting, LevelType.basic);
     player = AudioPlayer();
     player.setReleaseMode(ReleaseMode.stop);
   }
@@ -44,8 +49,6 @@ class _CountingScreenState extends State<CountingScreen> {
     final size = MediaQuery.of(context).size;
     final leftWidth = size.width * 0.55;
     final leftHeight = 288.0;
-    final rightWidth = 160.0;
-    final rightHeight = 160.0;
 
     return Scaffold(
       backgroundColor: const Color(0xFFF5F3DD),
@@ -60,15 +63,13 @@ class _CountingScreenState extends State<CountingScreen> {
               child: Stack(
                 clipBehavior: Clip.none,
                 children: [
-                  LeftContainerWithImg(
-                    leftWidth: leftWidth,
-                    leftHeight: leftHeight,
-                    leftImage: widget.leftImage,
-                  ),
-                  RightImage(
-                    leftWidth: leftWidth,
-                    rightWidth: rightWidth,
-                    rightHeight: rightHeight,
+                  Align(
+                    alignment: Alignment.center,
+                    child: LeftContainerWithImg(
+                      leftWidth: leftWidth,
+                      leftHeight: leftHeight,
+                      leftImage: widget.leftImage,
+                    ),
                   ),
                 ],
               ),

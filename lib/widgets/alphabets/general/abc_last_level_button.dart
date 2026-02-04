@@ -37,7 +37,7 @@ class LastFeatureBox extends StatelessWidget {
           ),
           child: Row(
             children: [
-              /// 🔹 Left Image
+              ///  Left Image
               Image.asset(
                 imagePath,
                 width: 96,

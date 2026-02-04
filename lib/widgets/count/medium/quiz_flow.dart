@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import '../../../model/alphabets_module/congratulation_screen.dart';
 import '../../../model/counting_module/medium/medium_level.dart';
+import '../../../modules/controller/progress_controller.dart';
 import 'quiz_question.dart';
 
 class CountingQuizFlow extends StatefulWidget {
@@ -11,8 +13,16 @@ class CountingQuizFlow extends StatefulWidget {
 }
 
 class _CountingQuizFlowState extends State<CountingQuizFlow> {
+  final progressController = Get.find<ProgressController>();
   int currentIndex = 0;
   bool showCongrats = false;
+
+  @override
+  void initState() {
+    super.initState();
+    // Load last index from memory
+    currentIndex = progressController.getLastIndexMedium();
+  }
 
   final List<QuizQuestion> questions = quizQuestions;
 
@@ -31,9 +41,16 @@ class _CountingQuizFlowState extends State<CountingQuizFlow> {
         progress: progress,
         //  NEXT QUIZ
         onNextLessonPressed: () {
-          if (isLastQuiz) {
-            Navigator.pop(context, true); //  BASIC LEVEL COMPLETE
+          final bool isLastLetter = currentIndex == questions.length - 1;
 
+          // Save current progress
+          progressController.saveLastIndexMedium(currentIndex);
+          if (currentIndex > progressController.getUnlockedMediumLevel()) {
+            progressController.setUnlockedMediumLevel(currentIndex);
+          }
+
+          if (isLastLetter) {
+            Navigator.pop(context, true); // Medium level complete
             return;
           }
 
@@ -62,6 +79,12 @@ class _CountingQuizFlowState extends State<CountingQuizFlow> {
       onCorrectTap: () {
         setState(() {
           showCongrats = true;
+
+          // Save current progress
+          progressController.saveLastIndexMedium(currentIndex);
+          if (currentIndex > progressController.getUnlockedMediumLevel()) {
+            progressController.setUnlockedMediumLevel(currentIndex);
+          }
         });
       },
     );

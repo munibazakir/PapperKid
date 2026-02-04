@@ -8,7 +8,7 @@ class AlphabetQuizQuestion extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 159.234, // exact width
+      width: 159.234,
       height: 52,
       padding: const EdgeInsets.fromLTRB(24, 8, 24, 8),
       decoration: BoxDecoration(

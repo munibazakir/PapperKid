@@ -50,11 +50,9 @@ class QuizScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: Color(0xFFE0F2FE),
       body: SingleChildScrollView(
-        // padding: const EdgeInsets.all(16),
         child: Column(
           children: [
             const CountQuizAppbar(),
-            // const SizedBox(height: 0),
 
             /// MAIN CONTAINER
             Padding(
@@ -65,7 +63,6 @@ class QuizScreen extends StatelessWidget {
               ),
             ),
 
-            // const SizedBox(height: 32),
             Padding(
               padding: EdgeInsets.only(left: 24, right: 24),
               child: QuizOptionsRow(

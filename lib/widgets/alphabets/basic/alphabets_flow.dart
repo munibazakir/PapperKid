@@ -2,21 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../model/alphabets_module/basic_level/basic_level.dart';
 import '../../../model/alphabets_module/congratulation_screen.dart';
-import '../../../modules/controller/alphabet_enum.dart';
 import '../../../modules/controller/progress_controller.dart';
 
 class AlphabetFlow extends StatefulWidget {
-  final int startIndex;
-  AlphabetFlow({super.key, this.startIndex = 0});
+  final int? startIndex;
+  AlphabetFlow({super.key, this.startIndex});
 
   @override
   State<AlphabetFlow> createState() => _AlphabetFlowState();
 }
 
 class _AlphabetFlowState extends State<AlphabetFlow> {
-  final progressController = Get.find<ProgressController>();
+  late final ProgressController progressController;
 
-  int currentIndex = 0;
+  late int currentIndex;
   bool showCongrats = false;
 
   final List<String> letters = List.generate(
@@ -28,8 +27,18 @@ class _AlphabetFlowState extends State<AlphabetFlow> {
   void initState() {
     super.initState();
 
-    //  resume from saved progress
-    currentIndex = progressController.getLastIndex(AlphabetLevel.basic);
+    progressController = Get.find<ProgressController>();
+    currentIndex =
+        widget.startIndex ??
+        progressController.getLastIndex(ModuleType.abc, LevelType.basic);
+  }
+
+  void saveProgress() {
+    progressController.saveLastIndex(
+      ModuleType.abc,
+      LevelType.basic,
+      currentIndex,
+    );
   }
 
   @override
@@ -47,12 +56,6 @@ class _AlphabetFlowState extends State<AlphabetFlow> {
         //
         onNextLessonPressed: () {
           final bool isLastLetter = currentIndex == 25;
-
-          //  Save progress BEFORE moving to next
-          progressController.saveProgress(
-            level: AlphabetLevel.medium,
-            index: currentIndex,
-          );
 
           if (isLastLetter) {
             Navigator.pop(context, true); // BASIC LEVEL COMPLETE
@@ -75,5 +78,11 @@ class _AlphabetFlowState extends State<AlphabetFlow> {
       nextText: "Next",
       onNext: () => setState(() => showCongrats = true),
     );
+  }
+
+  @override
+  void dispose() {
+    saveProgress(); // Save progress when leaving screen
+    super.dispose();
   }
 }

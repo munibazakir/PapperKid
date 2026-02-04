@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import '../../../model/alphabets_module/congratulation_screen.dart';
 import '../../../model/counting_module/basic/count_basic_level.dart';
+import '../../../modules/controller/progress_controller.dart';
 
 class CountingFlow extends StatefulWidget {
+  // final int? startIndex;
   const CountingFlow({super.key});
 
   @override
@@ -10,10 +13,35 @@ class CountingFlow extends StatefulWidget {
 }
 
 class _CountingFlowState extends State<CountingFlow> {
+  late final ProgressController progressController;
+
   int currentIndex = 0;
   bool showCongrats = false;
 
   final List<int> numbers = List.generate(10, (i) => i + 1); // 1–10
+
+  @override
+  void initState() {
+    super.initState();
+
+    //  resume from saved progress
+    // currentIndex = progressController.getLastIndex(AlphabetLevel.basic);
+    // Resume from saved progress or passed startIndex
+    // Safe: Get.find only after main initialized
+    progressController = Get.find<ProgressController>();
+    currentIndex = progressController.getLastIndex(
+      ModuleType.counting,
+      LevelType.basic,
+    );
+  }
+
+  void saveProgress() {
+    progressController.saveLastIndex(
+      ModuleType.counting,
+      LevelType.basic,
+      currentIndex,
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -58,5 +86,11 @@ class _CountingFlowState extends State<CountingFlow> {
         });
       },
     );
+  }
+
+  @override
+  void dispose() {
+    saveProgress(); // Save progress when leaving screen
+    super.dispose();
   }
 }

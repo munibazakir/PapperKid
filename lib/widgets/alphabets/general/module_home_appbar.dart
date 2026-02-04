@@ -4,13 +4,13 @@ import 'package:flutter/services.dart';
 class ModuleHomeAppbar extends StatelessWidget implements PreferredSizeWidget {
   final String heading;
   final Color bgColor;
-  final VoidCallback? onBackPressed; // <-- new
+  final VoidCallback? onBackPressed;
 
   const ModuleHomeAppbar({
     super.key,
     required this.heading,
     required this.bgColor,
-    this.onBackPressed, // <-- new
+    this.onBackPressed,
   });
 
   @override

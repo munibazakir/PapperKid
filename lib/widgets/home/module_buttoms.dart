@@ -91,11 +91,7 @@ class ModuleButtoms extends StatelessWidget {
                     borderRadius: BorderRadius.circular(88),
                   ),
                   alignment: Alignment.center,
-                  child: Icon(
-                    icon,
-                    color: const Color(0xFFFFFFFF),
-                    size: 80, // responsive safe size
-                  ),
+                  child: Icon(icon, color: const Color(0xFFFFFFFF), size: 80),
                 ),
               ),
             ],

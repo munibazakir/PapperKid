@@ -1,5 +1,7 @@
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import '../../../modules/controller/progress_controller.dart';
 import '../../../widgets/alphabets/advance/alphabets_data.dart';
 import '../../../widgets/alphabets/advance/start_quiz_btn.dart';
 import '../../../widgets/alphabets/general/element_appbar.dart';
@@ -19,6 +21,7 @@ class AdvancedLevelFlow extends StatefulWidget {
 }
 
 class _AdvancedLevelFlowState extends State<AdvancedLevelFlow> {
+  late final ProgressController progressController;
   int currentIndex = 0;
   bool showCongrats = false;
 
@@ -26,6 +29,10 @@ class _AdvancedLevelFlowState extends State<AdvancedLevelFlow> {
   void initState() {
     super.initState();
     player.setReleaseMode(ReleaseMode.stop);
+
+    progressController = Get.find<ProgressController>();
+    //  Load last letter index from memory
+    currentIndex = progressController.getLastIndexAdvance();
   }
 
   @override
@@ -59,13 +66,24 @@ class _AdvancedLevelFlowState extends State<AdvancedLevelFlow> {
         rewardCount: currentIndex + 1,
         progress: progress,
         onNextLessonPressed: () {
+          final bool isLastLetter = currentIndex == alphabets.length - 1;
+
+          // Save progress
+          progressController.saveLastIndexAdvance(currentIndex);
+          if (currentIndex > progressController.getUnlockedAdvanceLevel()) {
+            progressController.setUnlockedAdvanceLevel(currentIndex);
+          }
+
           if (!isLastLetter) {
             setState(() {
               currentIndex++;
               showCongrats = false;
             });
+          } else {
+            Navigator.pop(context, true); // Advance Level complete
           }
         },
+
         onBackToMapPressed: () => Navigator.pop(context),
       );
     }

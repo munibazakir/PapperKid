@@ -1,6 +1,8 @@
 import 'package:alphabetsandcounting/utils/image.dart';
 import 'package:alphabetsandcounting/widgets/count/medium/quiz_flow.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import '../../modules/controller/progress_controller.dart';
 import '../../modules/lock_animation/coin_fly_animation.dart';
 import '../../modules/lock_animation/level_lock.dart';
 import '../../modules/lock_animation/level_state.dart';
@@ -22,13 +24,8 @@ class _CountLevelScreenState extends State<CountLevelScreen>
     with TickerProviderStateMixin {
   int coins = 0;
 
-  // Level unlock state
-  final List<LevelState> levels = [
-    LevelState(unlocked: true), // Basic
-    LevelState(unlocked: false), // subtraction
-    LevelState(unlocked: false), // Multiplication
-    LevelState(unlocked: false), // Elite
-  ];
+  late final ProgressController progress;
+  late List<LevelState> levels;
 
   late final List<AnimationController> _controllers;
   late final List<Animation<Offset>> _slideAnimations;
@@ -43,6 +40,17 @@ class _CountLevelScreenState extends State<CountLevelScreen>
   @override
   void initState() {
     super.initState();
+
+    // Get ProgressController
+    progress = Get.find<ProgressController>();
+
+    // Initialize levels based on unlocked state
+    levels = [
+      LevelState(unlocked: true), // Basic always unlocked
+      LevelState(unlocked: progress.getUnlockedLevel(ModuleType.counting) >= 1),
+      LevelState(unlocked: progress.getUnlockedLevel(ModuleType.counting) >= 2),
+      LevelState(unlocked: progress.getUnlockedLevel(ModuleType.counting) >= 3),
+    ];
 
     _controllers = List.generate(
       _numButtons,
@@ -165,6 +173,10 @@ class _CountLevelScreenState extends State<CountLevelScreen>
 
                               if (completed == true) {
                                 await flyCoins(_basicKey, _mediumKey, 1);
+                                progress.setUnlockedLevel(
+                                  ModuleType.counting,
+                                  1,
+                                );
                               }
                             },
                           ),
@@ -199,6 +211,10 @@ class _CountLevelScreenState extends State<CountLevelScreen>
                               );
                               if (completed == true) {
                                 await flyCoins(_mediumKey, _advanceKey, 2);
+                                progress.setUnlockedLevel(
+                                  ModuleType.counting,
+                                  2,
+                                );
                               }
                             },
                           ),
@@ -235,6 +251,10 @@ class _CountLevelScreenState extends State<CountLevelScreen>
 
                               if (completed == true) {
                                 await flyCoins(_advanceKey, _eliteKey, 3);
+                                progress.setUnlockedLevel(
+                                  ModuleType.counting,
+                                  3,
+                                );
                               }
                             },
                           ),

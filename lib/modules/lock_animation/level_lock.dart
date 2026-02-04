@@ -13,7 +13,7 @@ class LevelLockWrapper extends StatelessWidget {
     super.key,
     required this.isLocked,
     required this.child,
-    this.blurHeight, // null => NO blur
+    this.blurHeight,
     this.blurRadius = 32,
     this.blurAlignment = Alignment.center,
   });

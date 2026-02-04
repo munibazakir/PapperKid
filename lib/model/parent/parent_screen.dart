@@ -1,8 +1,6 @@
 import 'dart:ui';
 import 'package:alphabetsandcounting/utils/image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-
 import '../home/home_screen.dart';
 
 class ParentScreen extends StatelessWidget {

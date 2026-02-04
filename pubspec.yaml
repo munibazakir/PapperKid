@@ -70,6 +70,7 @@ flutter:
     - assets/phonicsSound/
     - assets/alphabetsSound/
     - assets/countSound/
+    - assets/basicSound/
     
   #   - images/a_dot_ham.jpeg
 

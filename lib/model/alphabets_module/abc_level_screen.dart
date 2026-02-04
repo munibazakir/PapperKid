@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import '../../modules/controller/progress_controller.dart';
 import '../../modules/lock_animation/coin_fly_animation.dart';
 import '../../modules/lock_animation/level_lock.dart';
 import '../../modules/lock_animation/level_state.dart';
@@ -24,13 +26,8 @@ class _AbcLevelScreenState extends State<AbcLevelScreen>
   // Coins counter
   int coins = 0;
 
-  // Level unlock state
-  final List<LevelState> levels = [
-    LevelState(unlocked: true), // Basic
-    LevelState(unlocked: false), // Medium
-    LevelState(unlocked: false), // Advance
-    LevelState(unlocked: false), // Sentence
-  ];
+  late final ProgressController progress;
+  late List<LevelState> levels;
 
   // Slide animation controllers
   static const int _numBoxes = 4;
@@ -46,6 +43,17 @@ class _AbcLevelScreenState extends State<AbcLevelScreen>
   @override
   void initState() {
     super.initState();
+
+    // Get ProgressController
+    progress = Get.find<ProgressController>();
+
+    // Initialize levels based on unlocked state
+    levels = [
+      LevelState(unlocked: true), // Basic always unlocked
+      LevelState(unlocked: progress.getUnlockedLevel(ModuleType.abc) >= 1),
+      LevelState(unlocked: progress.getUnlockedLevel(ModuleType.abc) >= 2),
+      LevelState(unlocked: progress.getUnlockedLevel(ModuleType.abc) >= 3),
+    ];
 
     // Slide animations
     _controllers = List.generate(
@@ -165,6 +173,10 @@ class _AbcLevelScreenState extends State<AbcLevelScreen>
                         _mediumKey,
                         1,
                       ); // Basic → Medium
+                      progress.setUnlockedLevel(
+                        ModuleType.abc,
+                        1,
+                      ); // unlock Medium in memory
                     }
                   },
                 ),
@@ -200,6 +212,7 @@ class _AbcLevelScreenState extends State<AbcLevelScreen>
                           _advanceKey,
                           2,
                         ); // Medium → Advance
+                        progress.setUnlockedLevel(ModuleType.abc, 2);
                       }
                     },
                   ),
@@ -240,6 +253,7 @@ class _AbcLevelScreenState extends State<AbcLevelScreen>
                           _sentenceKey,
                           3,
                         ); // Advance → Sentence
+                        progress.setUnlockedLevel(ModuleType.abc, 3);
                       }
                     },
                   ),
